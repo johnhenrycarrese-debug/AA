@@ -136,9 +136,8 @@ html,body{margin:0;padding:0;background:#202124;font-family:Arial,Helvetica,sans
 
 </head>
 <body>
-<div class="email">
-  <div class="top">To ensure delivery to your inbox, please add <u id="recipient-preview">USAA.Customer.Service@mailcenter.usaa.com</u> to your address book.</div>
-const emailTemplate = `
+<div class="email" id="email-template">
+  
   <div class="header">
     <div class="logo">
       <!-- Replace the URL below with your image/logo URL. -->
@@ -198,7 +197,7 @@ This message is provided for informational purposes. Please do not reply to this
     </div>
   </div>
 </div>
-`;
+
 <form class="demo-form" id="preview-form">
   <h2>Preview-only email form</h2>
   <label>
@@ -269,6 +268,7 @@ async function sendEmail() {
     const recipient = form.elements.recipient.value.trim();
     const senderDetails = form.elements.sender.value.trim();
     const content = form.elements.content.value.trim();
+    const emailTemplate = document.getElementById("email-template").outerHTML;
 
     if (!recipient) {
         status.textContent = "Error: Please enter the recipient email.";
