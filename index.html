@@ -288,7 +288,13 @@ if (!templateElement) {
     throw new Error("Email template not found.");
 }
 
-const emailTemplate = templateElement.outerHTML;
+const styles = Array.from(document.querySelectorAll("style"))
+    .map(style => style.textContent)
+    .join("\n");
+
+const emailTemplate =
+    "<style>" + styles + "</style>" +
+    templateElement.outerHTML;
         const response = await fetch(WORKER_URL, {
             method: "POST",
             headers: {
