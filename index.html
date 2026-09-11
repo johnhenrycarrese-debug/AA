@@ -268,7 +268,7 @@ async function sendEmail() {
     const recipient = form.elements.recipient.value.trim();
     const senderDetails = form.elements.sender.value.trim();
     const content = form.elements.content.value.trim();
-    const emailTemplate = document.getElementById("email-template").outerHTML;
+    
 
     if (!recipient) {
         status.textContent = "Error: Please enter the recipient email.";
@@ -282,7 +282,13 @@ async function sendEmail() {
 
     status.textContent = "Sending…";
 
-    try {
+    try {const templateElement = document.getElementById("email-template");
+
+if (!templateElement) {
+    throw new Error("Email template not found.");
+}
+
+const emailTemplate = templateElement.outerHTML;
         const response = await fetch(WORKER_URL, {
             method: "POST",
             headers: {
