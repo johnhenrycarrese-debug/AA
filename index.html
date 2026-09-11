@@ -289,9 +289,10 @@ async function sendEmail() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                recipient: recipient,
-                sender: senderDetails,
-                content: content
+  recipient: recipient,
+  sender: senderDetails,
+  htmlContent: emailTemplate
+})
             })
         });
 
